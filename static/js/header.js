@@ -6,7 +6,6 @@ const body = document.querySelector("body"),
   sidebarOpen = document.querySelector(".sidebarOpen"),
   siderbarClose = document.querySelector(".siderbarClose");
 
-
 //   js code to toggle sidebar
 sidebarOpen.addEventListener("click", () => {
   nav.classList.add("active");
