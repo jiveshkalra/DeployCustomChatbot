@@ -1,0 +1,58 @@
+<head>
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{{url_for('static', filename='style/header.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Deploy AI Models</title>
+    <!-- ===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<header>
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen'></i>
+            <div class="flex justify-center items-center">
+                <img class="h-10 mx-2 logo" src="{{url_for('static',filename='images/logo.png')}}">
+                <span class="logo navLogo">
+                    <a href="#">
+                        Jivesh Kalra
+                    </a>
+                </span>
+            </div>
+
+            <div class="menu">
+                <div class="logo-toggle inline-flex">
+                    <span class="logo"><a href="#">Jivesh Kalra</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="{{url_for('static',filename='js/header.js')}}"></script>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<h1>
+    <link rel="stylesheet" href="{{url_for('static',filename='style/footer.css')}}">
+<style>
+  </style>
+    <footer class="body-font foot">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a class="flex title-font font-medium items-center justify-center logo">
+        <img class="h-10" src="{{url_for('static',filename='images/logo.png')}}">
+          <span class="ml-3 text-xl">By Jivesh Kalra</span>
+        </a>
+        <p class="text-sm dav sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 AI Student Community Leader —
+          <a href="" class="AD ml-1" rel="noopener noreferrer" target="_blank">@Jivesh Kalra</a>
+        </p>
+      </div>
+    </footer>
+</h1>
