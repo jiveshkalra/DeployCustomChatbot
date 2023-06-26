@@ -2,84 +2,56 @@
 
 {% block content %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="{{url_for('static',filename='style/index.css')}}">
 <style>
   .banner{
     margin:4rem;
     padding:2rem;
   }
   .chatbox{
-    padding: 0%;
+    padding: 2rem;
+    background: #FEF9E7;
+    height: 60vh;
+    margin-top: 10rem;
+    width: 80vw;
+  overflow-x: hidden;
+  overflow-y: auto;
   }
-  
-.msg-inputarea {
-    display: flex;
-    border-top: var(--border);
-    width: 96vw;
+.response{
+  padding: 1rem;
+  background-color: #fcf5da;
+  font-size: 1.25rem; 
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
-
-.msg-inputarea * {
-    padding: 10px;
+hr {
     border: none;
-    border-radius: 3px;
-    font-size: 1em;
-}
-.img_box{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 75vh;
-}
-
-
-.msg-input {
-    flex: 1;
-    background: #e2e5e7;
-    border-radius: 25px; 
-    min-height: 50px;
-    max-height: 250px;
-}
-
-.msg-input::-moz-placeholder{
+    border-top: 3px double #333;
+    color: #333;
+    overflow: visible;
     text-align: center;
-    font-size:17;
+    height: 5px;
 }
 
-.msg-input::placeholder{
-    text-align: center;
-    font-size:17;
+hr:after {
+    background: #fff;
+    content: '§';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
 }
-
-.msg-input:focus {
-    outline: none;
-}
-
-.msg-send-btn {
-    margin-left: 10px;
-    background: #226877;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.23s;
-    border-radius: 20px; 
-    min-height: 50px;
-    max-height: 250px;
-    font-size:17;
-}
-
-.msg-send-btn:hover {
-    background: #22535e;
-}
-
 </style>
 
 <div class="flex items-center justify-center" style="height: 75%;">
-  <div class="flex flex-col text-center w-full mb-20">
+  <div class="flex flex-col text-center w-full mb-20 items-center	">
     {% if(conversations) %}
-      {% for conversation in conversations %}
-        <p>Query: {{ conversation[0] }}</p>
-        <p>Response: {{ conversation[1] }}</p>
-      {% endfor %}   
+      <div class="chatbox flex flex-col">
+        {% for conversation in conversations %}
+        <div class="response"align="right">{{conversation[0]}}</div>
+        <div class="response"align="left"> {{ conversation[1] }}</div>
+        <hr>
+        {% endfor %}
+      </div>
     {% else %}
     <img src="{{url_for('static',filename='images/banner.png')}}" alt="" class="lg:m-16 lg:p-8 p-4 sm:p-8">
     {% endif %}

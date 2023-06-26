@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request,redirect,url_for
-import json
+# Importing
+from flask import Flask, render_template, request
 import requests
 from dotenv import load_dotenv
 import os
@@ -7,7 +7,6 @@ load_dotenv()
 
 # AI API Setup
 hugging_face_token = os.getenv("HUGGING_FACE_TOKEN")
-# API_URL = "https://api-inference.huggingface.co/models/OpenAssistant/falcon-7b-sft-mix-2000"
 API_URL = "https://api-inference.huggingface.co/models/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5"
 headers = {"Authorization": f"Bearer {hugging_face_token}"}
 
@@ -19,7 +18,11 @@ conversations = []
 @app.route('/home', methods=['POST','GET'])
 def home():
     if request.method == "POST":
+        global conversations
         msg_input = request.form['msg_input']
+        if msg_input == "cls":
+            conversations = []
+            msg_input = "Hey"
         response = get_chatbot_response(prompt=msg_input)
         conversation = [msg_input, response]
         conversations.append(conversation)
@@ -33,10 +36,8 @@ def query(payload):
 	return response.json()
 
 def get_chatbot_response(prompt):
-    output = query({
-        "inputs": f"<|prompter|>{prompt}<|endoftext|><|assistant|>",
-    })
-    return output[0]['generated_text'].split('<|assistant|>')[-1]
+    output = query({"inputs": f"<|prompter|>{prompt}<|endoftext|><|assistant|>",})
+    return output[0]['generated_text'].split('<|assistant|>')[-1] 
 
 
 if __name__ == "__main__": 

@@ -1,0 +1,58 @@
+.msg-inputarea {
+  display: flex;
+  border-top: var(--border);
+  width: 96vw;
+}
+
+.msg-inputarea * {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+}
+.img_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.msg-input {
+  flex: 1;
+  background: #e2e5e7;
+  border-radius: 25px;
+  min-height: 50px;
+  max-height: 250px;
+}
+
+.msg-input::-moz-placeholder {
+  text-align: center;
+  font-size: 17;
+}
+
+.msg-input::placeholder {
+  text-align: center;
+  font-size: 17;
+}
+
+.msg-input:focus {
+  outline: none;
+}
+
+.msg-send-btn {
+  margin-left: 10px;
+  background: #226877;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+  border-radius: 20px;
+  min-height: 50px;
+  max-height: 250px;
+  font-size: 17;
+}
+
+.msg-send-btn:hover {
+  background: #22535e;
+}
