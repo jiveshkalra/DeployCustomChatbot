@@ -73,12 +73,18 @@
 
 </style>
 
-<div class="flex items-center justify-center min-h-screen">
+<div class="flex items-center justify-center" style="height: 75%;">
   <div class="flex flex-col text-center w-full mb-20">
+    {% if(conversations) %}
+      {% for conversation in conversations %}
+        <p>Query: {{ conversation[0] }}</p>
+        <p>Response: {{ conversation[1] }}</p>
+      {% endfor %}   
+    {% else %}
     <img src="{{url_for('static',filename='images/banner.png')}}" alt="" class="lg:m-16 lg:p-8 p-4 sm:p-8">
+    {% endif %}
   </div>
 </div>
-{{user_messages}}
 <div class="down_box w-full">
   <form class="msg-inputarea px-2 sm:px-4 lg:px-6 xl:px-12  my-20 sm:my-14 lg:my-10 xl:my-5" action="#" id="chatbox" method="POST">
       <textarea rows="1" type="text" id="msg_input"name="msg_input" class="msg-input" placeholder="Enter your message..." ></textarea>
