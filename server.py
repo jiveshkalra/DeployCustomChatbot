@@ -7,6 +7,7 @@ load_dotenv()
 
 # AI API Setup
 hugging_face_token = os.getenv("HUGGING_FACE_TOKEN")
+# Model Url -> https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
 API_URL = "https://api-inference.huggingface.co/models/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5"
 headers = {"Authorization": f"Bearer {hugging_face_token}"}
 conversations = []
@@ -22,10 +23,6 @@ def home():
         # Get user input from form
         msg_input = request.form['msg_input']
 
-        # Clear conversations if input is 'cls'
-        if msg_input == "cls":
-            conversations = []
-            msg_input = "Hey"
 
         # Get chatbot response
         response = get_chatbot_response(prompt=msg_input)
@@ -49,8 +46,9 @@ def query(payload):
 
 def get_chatbot_response(prompt):
     # Get chatbot response from API
-    output = query({"inputs": f"{prompt}",})
-    return output[0]['generated_text'].split('')[-1]
+    output = query({"inputs": f"<|prompter|>{prompt}<|endoftext|><|assistant|>"})
+    print(output[0]['generated_text'])
+    return output[0]['generated_text'].split('<|assistant|>')[-1]
 
 
 if __name__ == "__main__":
